@@ -6,10 +6,12 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -30,7 +32,9 @@ public class PersonFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    public static final String TAG_ID = "id";
+    public static final String TAG_USERNAME = "username";
+    String id, username;
     private OnFragmentInteractionListener mListener;
 
     public PersonFragment() {
@@ -55,6 +59,7 @@ public class PersonFragment extends Fragment {
         return fragment;
     }
     Button person_logout;
+    TextView txt_id, txt_username;
     SharedPreferences sharedpreferences;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,32 +68,41 @@ public class PersonFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-//        person_logout = (Button) find
-
-//        person_logout.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                // TODO Auto-generated method stub
-//                // update login session ke FALSE dan mengosongkan nilai id dan username
-//                SharedPreferences.Editor editor = sharedpreferences.edit();
-//                editor.putBoolean(Login.session_status, false);
-////                editor.putString(TAG_ID, null);
-////                editor.putString(TAG_USERNAME, null);
-//                editor.commit();
-//
-//                Intent intent = new Intent(MainActivity.this, Login.class);
-//                finish();
-//                startActivity(intent);
-//            }
-//        });
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_person, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_person, container, false);
+        //Inflate the layout for this fragment
+        txt_username = view.findViewById(R.id.user_profile_name);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Login.my_shared_preferences, Context.MODE_PRIVATE);
+        id = sharedPreferences.getString(TAG_ID, id);
+        username = sharedPreferences.getString(TAG_USERNAME, username);
+
+        txt_username.setText(username+' '+id);
+        Log.e("Profile!", id);
+
+
+//        Log.e("Profile2!", username);
+        Button person_logout = (Button)view.findViewById(R.id.person_logout);
+        person_logout.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Login.my_shared_preferences, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear();
+            editor.putBoolean(Login.session_status, false);
+            editor.commit();
+            Intent logout = new Intent(getActivity(), Login.class);
+            startActivity(logout);
+            Log.d(TAG_ID, sharedPreferences.getString("TAG_ID", ""));
+            Log.d(TAG_USERNAME, sharedPreferences.getString("TAG_USERNAME", ""));
+            }
+        });
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -104,7 +118,7 @@ public class PersonFragment extends Fragment {
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
-            Toast.makeText(context, "Task Fragment", Toast.LENGTH_SHORT).show();
+            Log.e("Profile!", "Profile");
         }
     }
 

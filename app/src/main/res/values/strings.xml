@@ -12,4 +12,6 @@
     <string name="task_button">Task Button</string>
     <string name="logout">Logout</string>
     <string name="button">Home Button</string>
+    <string name="btn_logout">Logout</string>
+    <string name="title_activity_main2">Main2Activity</string>
 </resources>
