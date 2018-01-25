@@ -1,9 +1,13 @@
 package cmw.co.id.pmc;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.content.Context;
 import android.content.Intent;
@@ -25,15 +29,18 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+            android.support.v4.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     mTextMessage.setText(R.string.title_home);
+                    transaction.replace(R.id.content, new HomeFragment()).commit();
                     return true;
-                case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
+                case R.id.navigation_tasks:
+                    transaction.replace(R.id.content, new TaskFragment()).commit();
                     return true;
-                case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+                case R.id.navigation_profile:
+                    transaction.replace(R.id.content, new PersonFragment()).commit();
                     return true;
             }
             return false;
@@ -44,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btn_logout = (Button) findViewById(R.id.btn_logout);
+        btn_logout = findViewById(R.id.btn_logout);
         TextView txt_id, txt_username;
         String id, username;
 
@@ -63,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 editor.putBoolean(Login.session_status, false);
                 editor.putString(TAG_ID, null);
                 editor.putString(TAG_USERNAME, null);
-                editor.commit();
+                editor.apply();
 
                 Intent intent = new Intent(MainActivity.this, Login.class);
                 finish();
@@ -72,9 +79,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        mTextMessage = findViewById(R.id.message);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+        android.support.v4.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.content, new HomeFragment()).commit();
     }
 
 }
