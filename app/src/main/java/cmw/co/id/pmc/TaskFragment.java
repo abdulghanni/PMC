@@ -1,15 +1,22 @@
 package cmw.co.id.pmc;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.internal.NavigationMenu;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import io.github.yavski.fabspeeddial.FabSpeedDial;
+import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -66,7 +73,20 @@ public class TaskFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_task, container, false);
+        View view = inflater.inflate(R.layout.fragment_task, container, false);
+
+        FabSpeedDial fabSpeedDial = (FabSpeedDial) view.findViewById(R.id.fabx);
+        fabSpeedDial.setMenuListener(new SimpleMenuListenerAdapter() {
+            @Override
+            public boolean onMenuItemSelected(MenuItem menuItem) {
+                Log.e("test", String.valueOf(menuItem.getItemId()));
+                // Memanggil main activity
+                Intent intent = new Intent(getActivity(), NewTask.class);
+                startActivity(intent);
+                return true;
+            }
+        });
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -14,4 +14,8 @@
     <string name="button">Home Button</string>
     <string name="btn_logout">Logout</string>
     <string name="title_activity_main2">Main2Activity</string>
+
+    <string name="title_activity_new_task_add">NewTaskAdd</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
