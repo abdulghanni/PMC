@@ -30,6 +30,7 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity android:name=".NewTask" />
+        <activity android:name=".HomeActivity"></activity>
     </application>
 
 </manifest>

@@ -4,5 +4,6 @@
         <item>@font/open_sans</item>
         <item>@font/roboto_bold</item>
         <item>@font/roboto_mono_bold_italic</item>
+        <item>@font/roboto_thin</item>
     </array>
 </resources>

@@ -8,7 +8,7 @@
 
     <item
         android:id="@+id/navigation_tasks"
-        android:icon="@drawable/ic_assignment_black_24dp"
+        android:icon="@drawable/ic_assignment_turned_in_black_24dp"
         android:title="@string/title_tasks" />
 
     <item

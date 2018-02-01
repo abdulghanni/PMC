@@ -35,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_home:
                     transaction.replace(R.id.content, new HomeFragment()).commit();
                     return true;
+//                    Intent intent1 = new Intent(MainActivity.this, HomeActivity.class);
+//                    startActivity(intent1);
+//                    break;
                 case R.id.navigation_tasks:
                     transaction.replace(R.id.content, new TaskFragment()).commit();
                     return true;
