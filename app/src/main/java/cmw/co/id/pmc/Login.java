@@ -26,7 +26,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Kuncoro on 03/24/2017.
+ * Created by Abdul Ghanni on 15/01/2018.
  */
 public class Login extends AppCompatActivity {
 
@@ -38,7 +38,7 @@ public class Login extends AppCompatActivity {
     int success;
     ConnectivityManager conMgr;
 
-    private String url = Server.URL + "login.php";
+    private String url = Server.URL + "login";
 
     private static final String TAG = Login.class.getSimpleName();
 

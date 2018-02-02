@@ -99,7 +99,7 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
-        String url = "http://portal.cmw.co.id/pmc/feed.php";
+        String url = Server.URL + "feed";
         mSearchView = (SearchView) view.findViewById(R.id.search_view);
         setupSearchView();
         new DownloadTask().execute(url);

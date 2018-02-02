@@ -1,98 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:cardview="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="5dp"
+    cardview:cardBackgroundColor="@android:color/transparent"
     cardview:cardCornerRadius="8dp"
     cardview:cardElevation="3dp"
     cardview:cardUseCompatPadding="true">
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bgContent"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:fontFamily="@font/roboto_thin"
-            android:text="01-Feb-2018 10:00:00"
-            android:textSize="12dp" />
+        <!-- LEFT TITLE PART -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="155dp"
+            android:layout_weight="3"
+            android:background="@color/bgTitleLeft"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="20dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="20dp">
 
-        <ImageButton
-            android:id="@+id/user_profile_photo"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="19dp"
-            android:layout_marginStart="19dp"
-            android:background="@drawable/profile_circular_border_imageview"
-            android:elevation="5dp"
-            android:padding="20dp"
-            android:scaleType="centerCrop" />
-        <ImageView
-            android:id="@+id/thumbnail"
-            android:layout_width="fill_parent"
-            android:layout_height="100dp"
-            android:layout_alignParentTop="true"
-            android:scaleType="fitXY"/>
+            <TextView
+                android:id="@+id/title_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:textColor="@android:color/white"
+                android:textSize="26sp" />
 
+            <TextView
+                android:id="@+id/title_time_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:textColor="@android:color/white"
+                android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:layout_below="@+id/time"
-            android:layout_toRightOf="@+id/user_profile_photo"
-            android:fontFamily="@font/roboto_black"
-            android:hint="Abdul Ghanni"
-            android:textColor="#000"
-            android:textSize="14dp" />
-
-        <TextView
-            android:id="@+id/status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/title"
-            android:layout_toRightOf="@+id/title"
-            android:fontFamily="@font/roboto_black"
-            android:hint="Completed"
-            android:textColor="#000"
-            android:textSize="14dp" />
-
-        <TextView
-            android:id="@+id/feed_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/status"
-            android:fontFamily="@font/roboto_black"
-            android:hint="Projects"
-            android:textColor="#000"
-            android:textSize="14dp" />
-
-        <TextView
-            android:id="@+id/feed_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/user_profile_photo"
-            android:layout_alignLeft="@+id/title"
-            android:layout_alignStart="@+id/title"
-            android:layout_marginTop="20px"
-            android:fontFamily="@font/roboto_black"
-            android:hint="Perbaikan Absentism PERSYSH"
-            android:textColor="#000"
-            android:textSize="14dp" />
+            <TextView
+                android:id="@+id/title_date_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/title_time_label"
+                android:layout_alignParentStart="true"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
 
 
-    </RelativeLayout>
+        </RelativeLayout>
+        <!-- RIGHT TITLE PART -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/bgTitleRight"
+            android:paddingBottom="20dp"
+            android:paddingEnd="20dp"
+            android:paddingStart="15dp"
+            android:paddingTop="20dp">
+
+            <ImageView
+                android:id="@+id/thumbnail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/from_to_purple" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/thumbnail"
+                android:layout_alignParentTop="true"
+                android:layout_alignStart="@+id/thumbnail"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                android:singleLine="true"
+                android:text="Abdul Ghanni"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/title"
+                android:layout_alignStart="@+id/title"
+                android:layout_below="@+id/title"
+                android:layout_marginTop="11dp"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                android:singleLine="true"
+                android:text="Completed"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+
+            <TextView
+                android:id="@+id/textView"
+                style="@style/TitleBadgeTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/title_pledge"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:text="Projects Contoh 1" />
+
+            <TextView
+                android:id="@+id/title_weight"
+                style="@style/TitleBadgeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:text="20/02/2018 10:00" />
+
+            <TextView
+                android:id="@+id/title_pledge"
+                style="@style/TitleBadgeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
+
+        </RelativeLayout>
+    </LinearLayout>
 </android.support.v7.widget.CardView>
