@@ -34,12 +34,13 @@ public class MainActivity extends AppCompatActivity {
             android.support.v4.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    actionBarText.setText("PMC - HOME");
+                    actionBarText.setText("PMC - ACTIVITY");
                     transaction.replace(R.id.content, new HomeFragment()).commit();
                     return true;
 //                    Intent intent1 = new Intent(MainActivity.this, HomeActivity.class);
 //                    startActivity(intent1);
 //                    break;
+
                 case R.id.navigation_tasks:
                     actionBarText.setText("PMC - TASK");
                     transaction.replace(R.id.content, new TaskFragment()).commit();
