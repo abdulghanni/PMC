@@ -9,14 +9,14 @@
         android:name=".app.AppController"
         android:allowBackup="true"
         android:icon="@drawable/icon"
-        android:logo="@drawable/logo"
         android:label="PMC-CMW"
+        android:logo="@drawable/logo"
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Login"
-                  android:theme="@style/AppTheme.NoActionBar"
-            >
+        <activity
+            android:name=".Login"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,7 +32,8 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity android:name=".NewTask" />
-        <activity android:name=".HomeActivity"></activity>
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".NewProject"></activity>
     </application>
 
 </manifest>

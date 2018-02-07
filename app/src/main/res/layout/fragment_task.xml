@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="fill_parent"
@@ -13,35 +12,69 @@
     android:padding="12dp"
     tools:context=".MainActivity">
 
-    <android.support.v7.widget.SearchView   android:layout_width="match_parent"
+    <io.github.yavski.fabspeeddial.FabSpeedDial
+        android:id="@+id/fabx"
+        android:layout_width="wrap_content"
+        android:elevation="2dp"
         android:layout_height="wrap_content"
-        android:id="@+id/search_view"
-        android:focusable="false"
-        android:focusableInTouchMode="false">
-    </android.support.v7.widget.SearchView>
-    <ProgressBar   android:id="@+id/progress_bar"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:paddingBottom="50dp"
+        app:fabGravity="bottom_end"
+        app:fabMenu="@menu/menu_main"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.941"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.982"
+        app:miniFabBackgroundTint="@color/mini_fab_title_background_tint"
+        app:miniFabDrawableTint="?attr/colorPrimaryDark"
+        app:miniFabTitleTextColor="?attr/colorPrimaryDark" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.v7.widget.SearchView
+        android:id="@+id/search_view"
+        android:layout_width="383dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+    </android.support.v7.widget.SearchView>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/search_view" />
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_view" >
 
-    <io.github.yavski.fabspeeddial.FabSpeedDial
-        android:id="@+id/fabx"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:paddingBottom="50dp"
-        app:fabGravity="bottom_end"
-        app:fabMenu="@menu/menu_main"
-        app:miniFabBackgroundTint="@color/mini_fab_title_background_tint"
-        app:miniFabDrawableTint="?attr/colorPrimaryDark"
-        app:miniFabTitleTextColor="?attr/colorPrimaryDark" />
-</RelativeLayout>
+    </android.support.v7.widget.RecyclerView>
+</android.support.constraint.ConstraintLayout>

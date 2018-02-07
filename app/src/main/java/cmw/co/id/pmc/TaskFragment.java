@@ -106,7 +106,7 @@ public class TaskFragment extends Fragment implements SearchView.OnQueryTextList
             public boolean onMenuItemSelected(MenuItem menuItem) {
                 Log.e("test", String.valueOf(menuItem.getItemId()));
                 // Memanggil main activity
-                Intent intent = new Intent(getActivity(), NewTask.class);
+                Intent intent = new Intent(getActivity(), NewProject.class);
                 startActivity(intent);
                 return true;
             }

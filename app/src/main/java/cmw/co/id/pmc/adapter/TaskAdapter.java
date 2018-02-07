@@ -1,8 +1,6 @@
-package cmw.co.id.pmc;
+package cmw.co.id.pmc.adapter;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.TextUtils;
@@ -16,6 +14,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import java.util.ArrayList;
 import java.util.List;
+
+import cmw.co.id.pmc.FeedItem;
+import cmw.co.id.pmc.R;
 
 /**
  * Created by CMW on 29/01/2018.
