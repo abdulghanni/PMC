@@ -11,8 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +27,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
+import cmw.co.id.pmc.adapter.HomeAdapter;
+import cmw.co.id.pmc.data.FeedItem;
 
 
 /**
@@ -49,7 +50,7 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
     private static final String TAG = "RecyclerViewExample";
     private List<FeedItem> feedsList;
     private RecyclerView mRecyclerView;
-    private MyRecyclerViewAdapter adapter;
+    private HomeAdapter adapter;
     private ProgressBar progressBar;
 
     private SearchView mSearchView;
@@ -144,7 +145,7 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
             progressBar.setVisibility(View.GONE);
 
             if (result == 1) {
-                adapter = new MyRecyclerViewAdapter(getActivity(), feedsList);
+                adapter = new HomeAdapter(getActivity(), feedsList);
                 mRecyclerView.setAdapter(adapter);
             } else {
                 Toast.makeText(getActivity(), "Failed to fetch data!", Toast.LENGTH_SHORT).show();
@@ -161,7 +162,6 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
                 JSONObject post = posts.optJSONObject(i);
                 FeedItem item = new FeedItem();
                 item.setTitle(post.optString("no_emp"));
-                item.setThumbnail(post.optString("description"));
                 item.setStatus(post.optString("description"));
 //                item.setThumbnail("tes.png");
                 feedsList.add(item);

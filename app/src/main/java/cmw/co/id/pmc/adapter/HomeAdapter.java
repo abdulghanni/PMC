@@ -1,8 +1,6 @@
-package cmw.co.id.pmc;
+package cmw.co.id.pmc.adapter;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.TextUtils;
@@ -17,16 +15,19 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import java.util.ArrayList;
 import java.util.List;
 
+import cmw.co.id.pmc.R;
+import cmw.co.id.pmc.data.FeedItem;
+
 /**
  * Created by CMW on 29/01/2018.
  */
 
-public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.CustomViewHolder>{
+public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.CustomViewHolder>{
     private List<FeedItem> feedItemList;
     private Context mContext;
     //private OnItemClickListener onItemClickListener;
     View view;
-    public MyRecyclerViewAdapter(Context context, List<FeedItem> feedItemList) {
+    public HomeAdapter(Context context, List<FeedItem> feedItemList) {
         this.feedItemList = feedItemList;
         this.mContext = context;
 //        this.feedItemList = new ArrayList<FeedItem>();
@@ -43,10 +44,6 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     public void onBindViewHolder(CustomViewHolder customViewHolder, int i) {
         final FeedItem feedItem = feedItemList.get(i);
         //Download image using picasso library
-        if (!TextUtils.isEmpty(feedItem.getThumbnail())) {
-            Glide.with(mContext).load(feedItem.getThumbnail()).diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(customViewHolder.imageView);
-        }
 
         //Setting text view title
         customViewHolder.textView.setText(Html.fromHtml(feedItem.getTitle()));
@@ -67,13 +64,11 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         customViewHolder.textView.setOnClickListener(listener);*/
     }
     class CustomViewHolder extends RecyclerView.ViewHolder {
-        protected ImageView imageView;
         protected TextView textView;
         protected TextView status;
 
         public CustomViewHolder(View view) {
             super(view);
-            this.imageView = (ImageView) view.findViewById(R.id.thumbnail);
             this.textView = (TextView) view.findViewById(R.id.title);
             this.status = (TextView) view.findViewById(R.id.status);
         }

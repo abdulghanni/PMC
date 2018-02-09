@@ -1,4 +1,4 @@
-package cmw.co.id.pmc;
+package cmw.co.id.pmc.data;
 
 /**
  * Created by CMW on 31/01/2018.
@@ -14,12 +14,6 @@ public class FeedItem {
     }
     public void setTitle(String title) {
         this.title = title;
-    }
-    public String getThumbnail() {
-        return thumbnail;
-    }
-    public void setThumbnail(String thumbnail) {
-        this.thumbnail = thumbnail;
     }
 
     public String getStatus() {

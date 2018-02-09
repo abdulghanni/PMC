@@ -32,6 +32,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import cmw.co.id.pmc.adapter.TaskAdapter;
+import cmw.co.id.pmc.data.ProjectItem;
 import io.github.yavski.fabspeeddial.FabSpeedDial;
 import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
 
@@ -50,9 +52,9 @@ public class TaskFragment extends Fragment implements SearchView.OnQueryTextList
     private static final String ARG_PARAM2 = "param2";
 
     private static final String TAG = "RecyclerViewExample";
-    private List<FeedItem> feedsList;
+    private List<ProjectItem> feedsProject;
     private RecyclerView mRecyclerView;
-    private MyRecyclerViewAdapter adapter;
+    private TaskAdapter adapter;
     private ProgressBar progressBar;
 
     private SearchView mSearchView;
@@ -104,18 +106,29 @@ public class TaskFragment extends Fragment implements SearchView.OnQueryTextList
         fabSpeedDial.setMenuListener(new SimpleMenuListenerAdapter() {
             @Override
             public boolean onMenuItemSelected(MenuItem menuItem) {
-                Log.e("test", String.valueOf(menuItem.getItemId()));
-                // Memanggil main activity
-                Intent intent = new Intent(getActivity(), NewProject.class);
-                startActivity(intent);
-                return true;
+//                Log.e("test", String.valueOf(menuItem.getItemId()));
+                switch (menuItem.getItemId()) {
+                    case R.id.two:
+                        Intent intent1 = new Intent(getActivity(), NewTask.class);
+                        startActivity(intent1);
+                        return true;
+//                    Intent intent1 = new Intent(MainActivity.this, HomeActivity.class);
+//                    startActivity(intent1);
+//                    break;
+
+                    case R.id.one:
+                        Intent intent = new Intent(getActivity(), NewProject.class);
+                        startActivity(intent);
+                        return true;
+                }
+                return false;
             }
         });
 
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.project_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
-        String url = Server.URL + "feed";
+        String url = Server.URL + "project";
         mSearchView = (SearchView) view.findViewById(R.id.search_view);
         setupSearchView();
         new TaskFragment.DownloadTask().execute(url);
@@ -160,7 +173,7 @@ public class TaskFragment extends Fragment implements SearchView.OnQueryTextList
             progressBar.setVisibility(View.GONE);
 
             if (result == 1) {
-                adapter = new MyRecyclerViewAdapter(getActivity(), feedsList);
+                adapter = new TaskAdapter(getActivity(), feedsProject);
                 mRecyclerView.setAdapter(adapter);
             } else {
                 Toast.makeText(getActivity(), "Failed to fetch data!", Toast.LENGTH_SHORT).show();
@@ -170,17 +183,16 @@ public class TaskFragment extends Fragment implements SearchView.OnQueryTextList
 
     private void parseResult(String result) {
         try {
-            feedsList = new ArrayList<FeedItem>();
+            feedsProject = new ArrayList<ProjectItem>();
             JSONObject response = new JSONObject(result);
             JSONArray posts = response.optJSONArray("result");
             for (int i = 0; i < posts.length(); i++) {
                 JSONObject post = posts.optJSONObject(i);
-                FeedItem item = new FeedItem();
-                item.setTitle(post.optString("no_emp"));
-                item.setThumbnail(post.optString("description"));
-                item.setStatus(post.optString("description"));
+                ProjectItem item = new ProjectItem();
+                item.setName(post.optString("name"));
+                item.setStatus(post.optString("status"));
 //                item.setThumbnail("tes.png");
-                feedsList.add(item);
+                feedsProject.add(item);
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -189,7 +201,7 @@ public class TaskFragment extends Fragment implements SearchView.OnQueryTextList
     private void setupSearchView() {
         // mSearchView.setIconifiedByDefault(false);
         mSearchView.setOnQueryTextListener(this);
-//        adapter.setFilter(feedsList);
+//        adapter.setFilter(feedsProject);
         // mSearchView.setSubmitButtonEnabled(true);
         mSearchView.setQueryHint("Search here....");
     }
@@ -211,7 +223,7 @@ public class TaskFragment extends Fragment implements SearchView.OnQueryTextList
     }
 
     public boolean onQueryTextChange(String newText) {
-        final List<FeedItem> filteredModelList = filter(feedsList, newText);
+        final List<ProjectItem> filteredModelList = filter(feedsProject, newText);
         adapter.setFilter(filteredModelList);
         return true;
     }
@@ -219,10 +231,10 @@ public class TaskFragment extends Fragment implements SearchView.OnQueryTextList
     public boolean onQueryTextSubmit(String query) {
         return false;
     }
-    private List<FeedItem> filter(List<FeedItem> models, String query) {
-        query = query.toLowerCase();final List<FeedItem> filteredModelList = new ArrayList<>();
-        for (FeedItem model : models) {
-            final String name = model.getTitle().toLowerCase();
+    private List<ProjectItem> filter(List<ProjectItem> models, String query) {
+        query = query.toLowerCase();final List<ProjectItem> filteredModelList = new ArrayList<>();
+        for (ProjectItem model : models) {
+            final String name = model.getName().toLowerCase();
             if (name.contains(query)) {
                 filteredModelList.add(model);
             }

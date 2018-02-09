@@ -68,14 +68,6 @@
             android:paddingStart="15dp"
             android:paddingTop="20dp">
 
-            <ImageView
-                android:id="@+id/thumbnail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_marginEnd="10dp"
-                android:src="@drawable/from_to_purple" />
-
             <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"

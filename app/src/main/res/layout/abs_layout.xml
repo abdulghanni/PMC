@@ -11,6 +11,7 @@
         android:text="PMC"
         android:textColor="#ffffff"
         android:id="@+id/action_bar_text"
+        android:fontFamily="@font/montserrat"
         android:textSize="18sp" />
 
 </LinearLayout>

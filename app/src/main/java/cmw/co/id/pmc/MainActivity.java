@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 //                    break;
 
                 case R.id.navigation_tasks:
-                    actionBarText.setText("PMC - TASK");
+                    actionBarText.setText("PMC - PROJECT");
                     transaction.replace(R.id.content, new TaskFragment()).commit();
                     return true;
                 case R.id.navigation_profile:
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setCustomView(R.layout.abs_layout);
 
         actionBarText = findViewById(R.id.action_bar_text);
-        actionBarText.setText("PMC - HOME");
+        actionBarText.setText("PMC - Project");
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
