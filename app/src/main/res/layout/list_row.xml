@@ -19,7 +19,7 @@
         <!-- LEFT TITLE PART -->
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="155dp"
+            android:layout_height="122dp"
             android:layout_weight="3"
             android:background="@color/bgTitleLeft"
             android:gravity="center_horizontal"
@@ -72,11 +72,13 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/thumbnail"
-                android:layout_alignParentTop="true"
-                android:layout_alignStart="@+id/thumbnail"
+                android:layout_alignLeft="@+id/status"
+                android:layout_alignStart="@+id/status"
+                android:layout_below="@+id/title_weight"
+                android:layout_marginTop="8dp"
                 android:ellipsize="marquee"
                 android:fadingEdge="horizontal"
+                android:fontFamily="@font/montserrat"
                 android:singleLine="true"
                 android:text="Abdul Ghanni"
                 android:textColor="@android:color/black"
@@ -86,36 +88,29 @@
                 android:id="@+id/status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/title"
-                android:layout_alignStart="@+id/title"
-                android:layout_below="@+id/title"
-                android:layout_marginTop="11dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignTop="@+id/title_pledge"
                 android:ellipsize="marquee"
                 android:fadingEdge="horizontal"
+                android:fontFamily="@font/montserrat"
                 android:singleLine="true"
                 android:text="Completed"
                 android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
-
-            <TextView
-                android:id="@+id/textView"
-                style="@style/TitleBadgeTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/title_pledge"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:text="Projects Contoh 1" />
 
             <TextView
                 android:id="@+id/title_weight"
                 style="@style/TitleBadgeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
-                android:text="20/02/2018 10:00" />
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:fontFamily="@font/montserrat"
+                android:text="20/02/2018 10:00"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/title_pledge"

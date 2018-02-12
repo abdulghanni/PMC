@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
@@ -75,6 +76,8 @@ public class NewTask extends AppCompatActivity{
     private static final String TAG_NO_EMP = "no_emp";
     private static final String TAG_NAME = "name";
     public static final String TAG = NewTask.class.getSimpleName();
+    public static final String TAG_USERNAME = "username";
+    String username;
 
     String tag_json_obj = "json_obj_req";
 
@@ -265,11 +268,13 @@ public class NewTask extends AppCompatActivity{
                 String plan_end_date = tvPlanEndDate.getText().toString();
                 String assigned = tvAssigned.getText().toString();
                 String project_id = tvProjectSelected.getText().toString();
+                SharedPreferences sharedPreferences = NewTask.this.getSharedPreferences(Login.my_shared_preferences, Context.MODE_PRIVATE);
+                username = sharedPreferences.getString(TAG_USERNAME, username);
 
                 if (conMgr.getActiveNetworkInfo() != null
                         && conMgr.getActiveNetworkInfo().isAvailable()
                         && conMgr.getActiveNetworkInfo().isConnected()) {
-                    saveProject(name, description, plan_start_date, plan_end_date, assigned, project_id);
+                    saveProject(name, description, plan_start_date, plan_end_date, assigned, project_id, username);
                 } else {
                     Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
                 }
@@ -277,7 +282,7 @@ public class NewTask extends AppCompatActivity{
         });
     }
 
-    private void saveProject(final String name, final String description, final String tvPlanStartDate, final String plan_end_date, final String assigned, final String project_id) {
+    private void saveProject(final String name, final String description, final String tvPlanStartDate, final String plan_end_date, final String assigned, final String project_id, final String username) {
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         pDialog.setMessage("Saving ...");
@@ -337,6 +342,7 @@ public class NewTask extends AppCompatActivity{
                 params.put("plan_end_date", plan_end_date);
                 params.put("project_id", project_id);
                 params.put("assigned", assigned);
+                params.put("created_by", username);
 
                 return params;
             }
