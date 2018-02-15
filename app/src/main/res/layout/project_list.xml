@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:ellipsize="marquee"
                 android:fadingEdge="horizontal"
@@ -59,14 +59,14 @@
                 android:singleLine="true"
                 android:text="Project Name Text"
                 android:textColor="@android:color/black"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 cardview:layout_constraintBottom_toBottomOf="parent"
                 cardview:layout_constraintEnd_toEndOf="parent"
-                cardview:layout_constraintHorizontal_bias="0.0"
+                cardview:layout_constraintHorizontal_bias="0.214"
                 cardview:layout_constraintLeft_toLeftOf="@+id/thumbnail"
                 cardview:layout_constraintStart_toStartOf="parent"
                 cardview:layout_constraintTop_toBottomOf="@+id/tvPic"
-                cardview:layout_constraintVertical_bias="0.0" />
+                cardview:layout_constraintVertical_bias="0.025" />
 
             <TextView
                 android:id="@+id/tvProjectStatus"
@@ -84,13 +84,13 @@
                 android:singleLine="true"
                 android:text="Completed"
                 android:textColor="@android:color/black"
-                android:textSize="16sp"
+                android:textSize="12sp"
                 cardview:layout_constraintBottom_toBottomOf="parent"
                 cardview:layout_constraintEnd_toEndOf="parent"
-                cardview:layout_constraintHorizontal_bias="0.0"
+                cardview:layout_constraintHorizontal_bias="0.15"
                 cardview:layout_constraintStart_toStartOf="parent"
                 cardview:layout_constraintTop_toBottomOf="@+id/textView8"
-                cardview:layout_constraintVertical_bias="0.0" />
+                cardview:layout_constraintVertical_bias="0.36" />
 
 
             <TextView
@@ -99,16 +99,18 @@
                 android:layout_height="17dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/montserrat"
-                android:textColor="@android:color/black"
                 android:text="20/02/2018 10:00"
-                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                cardview:layout_constraintBottom_toBottomOf="parent"
                 cardview:layout_constraintEnd_toEndOf="parent"
-                cardview:layout_constraintHorizontal_bias="0.81"
+                cardview:layout_constraintHorizontal_bias="1.0"
                 cardview:layout_constraintStart_toEndOf="@+id/tvProjectStatus"
-                cardview:layout_constraintTop_toBottomOf="@+id/textView9" />
+                cardview:layout_constraintTop_toBottomOf="@+id/textView9"
+                cardview:layout_constraintVertical_bias="0.166" />
 
             <TextView
                 android:id="@+id/title_pledge"
@@ -125,7 +127,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
                 android:text="Project Name"
                 cardview:layout_constraintBottom_toBottomOf="parent"
                 cardview:layout_constraintEnd_toEndOf="parent"
@@ -140,9 +141,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:text="Project Status"
+                android:layout_marginTop="16dp"
+                android:text="Status"
+                android:textSize="12sp"
                 cardview:layout_constraintBottom_toBottomOf="parent"
                 cardview:layout_constraintEnd_toEndOf="parent"
                 cardview:layout_constraintHorizontal_bias="0.0"
@@ -154,13 +155,43 @@
                 android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
                 android:text="Due Date  Planning"
+                android:textSize="12sp"
                 cardview:layout_constraintEnd_toEndOf="parent"
-                cardview:layout_constraintHorizontal_bias="0.813"
+                cardview:layout_constraintHorizontal_bias="1.0"
                 cardview:layout_constraintStart_toEndOf="@+id/textView8"
                 cardview:layout_constraintTop_toBottomOf="@+id/tvProjectName" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                cardview:layout_constraintBottom_toTopOf="@+id/textView8"
+                cardview:layout_constraintEnd_toStartOf="@+id/tvProjectName"
+                cardview:layout_constraintHorizontal_bias="0.0"
+                cardview:layout_constraintStart_toStartOf="parent"
+                cardview:layout_constraintTop_toBottomOf="@+id/tvPic"
+                cardview:layout_constraintVertical_bias="0.0"
+                cardview:srcCompat="@drawable/ic_work_black_24dp" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                cardview:layout_constraintBottom_toBottomOf="parent"
+                cardview:layout_constraintEnd_toStartOf="@+id/tvProjectStatus"
+                cardview:layout_constraintHorizontal_bias="0.0"
+                cardview:layout_constraintStart_toStartOf="parent"
+                cardview:layout_constraintTop_toBottomOf="@+id/textView8"
+                cardview:layout_constraintVertical_bias="0.238"
+                cardview:srcCompat="@drawable/ic_update_black_24dp" />
 
         </android.support.constraint.ConstraintLayout>
     </LinearLayout>

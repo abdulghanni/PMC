@@ -12,20 +12,20 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import cmw.co.id.pmc.data.TaskItem;
+import cmw.co.id.pmc.data.ProjectItem;
 import cmw.co.id.pmc.R;
 
 /**
  * Created by CMW on 29/01/2018.
  */
 
-public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.CustomViewHolder>{
-    private List<TaskItem> TaskItemList;
+public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.CustomViewHolder>{
+    private List<ProjectItem> ProjectItemList;
     private Context mContext;
     //private OnItemClickListener onItemClickListener;
     View view;
-    public TaskAdapter(Context context, List<TaskItem> TaskItemList) {
-        this.TaskItemList = TaskItemList;
+    public ProjectAdapter(Context context, List<ProjectItem> ProjectItemList) {
+        this.ProjectItemList = ProjectItemList;
         this.mContext = context;
 //        this.ProjectItemList = new ArrayList<ProjectItem>();
         // we copy the original list to the filter list and use it for setting row values
@@ -33,20 +33,20 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.CustomViewHold
     }
     @Override
     public CustomViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.task_list, null, false);
+        view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.project_list, null);
         CustomViewHolder viewHolder = new CustomViewHolder(view);
         return viewHolder;
     }
     @Override
     public void onBindViewHolder(CustomViewHolder customViewHolder, int i) {
-        final TaskItem TaskItem = TaskItemList.get(i);
+        final ProjectItem ProjectItem = ProjectItemList.get(i);
         //Setting text view title
-        customViewHolder.textView.setText(Html.fromHtml(TaskItem.getName()));
-        customViewHolder.status.setText(Html.fromHtml(TaskItem.getStatus()));
+        customViewHolder.textView.setText(Html.fromHtml(ProjectItem.getName()));
+        customViewHolder.status.setText(Html.fromHtml(ProjectItem.getStatus()));
         customViewHolder.textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(), TaskItem.getName(), Toast.LENGTH_SHORT).show();            }
+                Toast.makeText(view.getContext(), ProjectItem.getName(), Toast.LENGTH_SHORT).show();            }
         });
     }
 
@@ -56,20 +56,20 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.CustomViewHold
 
         public CustomViewHolder(View view) {
             super(view);
-            this.textView = (TextView) view.findViewById(R.id.tvTaskName);
-            this.status = (TextView) view.findViewById(R.id.tvTaskStatus);
+            this.textView = (TextView) view.findViewById(R.id.tvProjectName);
+            this.status = (TextView) view.findViewById(R.id.tvProjectStatus);
         }
     }
 
 
     @Override
     public int getItemCount() {
-        return TaskItemList.size();
+        return ProjectItemList.size();
     }
 
-    public void setFilter(List<TaskItem> countryModels) {
-        TaskItemList = new ArrayList<>();
-        TaskItemList.addAll(countryModels);
+    public void setFilter(List<ProjectItem> countryModels) {
+        ProjectItemList = new ArrayList<>();
+        ProjectItemList.addAll(countryModels);
         notifyDataSetChanged();
     }
 }

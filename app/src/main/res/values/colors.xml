@@ -3,7 +3,6 @@
     <color name="colorPrimary">#3f51b5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorGray">#495C67</color>
-    <color name="colorAccent">#ff4081</color>
     <color name="colorOrange">#F68159</color>
     <color name="colorLightGray">#a6abae</color>
 
@@ -11,7 +10,7 @@
     <color name="graylight">#fafafa</color>
     <color name="startblue">#09c6df</color>
     <color name="endblue">#0bcce6</color>
-    <!--<color name="colorAccent">#FF99CC00</color>-->
+    <color name="colorAccent">#FF99CC00</color>
     <color name="bgBackSideColor">#f4f0ff</color>
     <color name="bgTitleLeft">#594691</color>
     <color name="bgTitleRight">#ffffff</color>

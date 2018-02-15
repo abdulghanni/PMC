@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
-    android:background="@drawable/background"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/background"
     android:clipChildren="false"
     android:clipToPadding="false"
     android:divider="@android:color/transparent"
@@ -62,10 +62,10 @@
     </android.support.v7.widget.SearchView>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/task_view"
+        android:id="@+id/project_view"
+
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:clipToPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

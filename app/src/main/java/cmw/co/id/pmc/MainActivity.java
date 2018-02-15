@@ -1,23 +1,17 @@
 package cmw.co.id.pmc;
 
 import android.app.ActionBar;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity {
     Button btn_logout;
@@ -42,8 +36,12 @@ public class MainActivity extends AppCompatActivity {
 //                    break;
 
                 case R.id.navigation_tasks:
-                    actionBarText.setText("PMC - PROJECT");
+                    actionBarText.setText("PMC - TASK");
                     transaction.replace(R.id.content, new TaskFragment()).commit();
+                    return true;
+                case R.id.navigation_projects:
+                    actionBarText.setText("PMC - PROJECT");
+                    transaction.replace(R.id.content, new ProjectFragment()).commit();
                     return true;
                 case R.id.navigation_profile:
                     actionBarText.setText("PMC - PROFILE");
@@ -71,9 +69,11 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+        FirebaseMessaging.getInstance().subscribeToTopic("test");
+        FirebaseInstanceId.getInstance().getToken();
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.content, new TaskFragment()).commit();
+        transaction.replace(R.id.content, new ProjectFragment()).commit();
     }
 
 }

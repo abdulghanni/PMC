@@ -29,30 +29,29 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import cmw.co.id.pmc.adapter.TaskAdapter;
-import cmw.co.id.pmc.data.TaskItem;
+import cmw.co.id.pmc.adapter.ProjectAdapter;
+import cmw.co.id.pmc.data.ProjectItem;
 import io.github.yavski.fabspeeddial.FabSpeedDial;
 import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
-
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link TaskFragment.OnFragmentInteractionListener} interface
+ * {@link ProjectFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link TaskFragment#newInstance} factory method to
+ * Use the {@link ProjectFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TaskFragment extends Fragment implements SearchView.OnQueryTextListener {
+public class ProjectFragment extends Fragment implements SearchView.OnQueryTextListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     private static final String TAG = "RecyclerViewExample";
-    private List<TaskItem> feedsTask;
+    private List<ProjectItem> feedsProject;
     private RecyclerView mRecyclerView;
-    private TaskAdapter adapter;
+    private ProjectAdapter adapter;
     private ProgressBar progressBar;
 
     private SearchView mSearchView;
@@ -63,7 +62,7 @@ public class TaskFragment extends Fragment implements SearchView.OnQueryTextList
 
     private OnFragmentInteractionListener mListener;
 
-    public TaskFragment() {
+    public ProjectFragment() {
         // Required empty public constructor
     }
 
@@ -73,11 +72,11 @@ public class TaskFragment extends Fragment implements SearchView.OnQueryTextList
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment TaskFragment.
+     * @return A new instance of fragment ProjectFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static TaskFragment newInstance(String param1, String param2) {
-        TaskFragment fragment = new TaskFragment();
+    public static ProjectFragment newInstance(String param1, String param2) {
+        ProjectFragment fragment = new ProjectFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -98,7 +97,7 @@ public class TaskFragment extends Fragment implements SearchView.OnQueryTextList
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_task, container, false);
+        View view = inflater.inflate(R.layout.fragment_project, container, false);
 
         FabSpeedDial fabSpeedDial = (FabSpeedDial) view.findViewById(R.id.fabx);
         fabSpeedDial.setMenuListener(new SimpleMenuListenerAdapter() {
@@ -115,7 +114,7 @@ public class TaskFragment extends Fragment implements SearchView.OnQueryTextList
 //                    break;
 
                     case R.id.one:
-                        Intent intent = new Intent(getActivity(), NewTask.class);
+                        Intent intent = new Intent(getActivity(), NewProject.class);
                         startActivity(intent);
                         return true;
                 }
@@ -123,13 +122,13 @@ public class TaskFragment extends Fragment implements SearchView.OnQueryTextList
             }
         });
 
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.task_view);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.project_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
-        String url = Server.URL + "task";
+        String url = Server.URL + "project";
         mSearchView = (SearchView) view.findViewById(R.id.search_view);
         setupSearchView();
-        new TaskFragment.DownloadTask().execute(url);
+        new ProjectFragment.DownloadTask().execute(url);
         return view;
     }
 
@@ -171,7 +170,7 @@ public class TaskFragment extends Fragment implements SearchView.OnQueryTextList
             progressBar.setVisibility(View.GONE);
 
             if (result == 1) {
-                adapter = new TaskAdapter(getActivity(), feedsTask);
+                adapter = new ProjectAdapter(getActivity(), feedsProject);
                 mRecyclerView.setAdapter(adapter);
             } else {
                 Toast.makeText(getActivity(), "Failed to fetch data!", Toast.LENGTH_SHORT).show();
@@ -181,16 +180,16 @@ public class TaskFragment extends Fragment implements SearchView.OnQueryTextList
 
     private void parseResult(String result) {
         try {
-            feedsTask = new ArrayList<TaskItem>();
+            feedsProject = new ArrayList<ProjectItem>();
             JSONObject response = new JSONObject(result);
             JSONArray posts = response.optJSONArray("result");
             for (int i = 0; i < posts.length(); i++) {
                 JSONObject post = posts.optJSONObject(i);
-                TaskItem item = new TaskItem();
+                ProjectItem item = new ProjectItem();
                 item.setName(post.optString("name"));
                 item.setStatus(post.optString("status"));
 //                item.setThumbnail("tes.png");
-                feedsTask.add(item);
+                feedsProject.add(item);
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -199,7 +198,7 @@ public class TaskFragment extends Fragment implements SearchView.OnQueryTextList
     private void setupSearchView() {
         // mSearchView.setIconifiedByDefault(false);
         mSearchView.setOnQueryTextListener(this);
-//        adapter.setFilter(feedsTask);
+//        adapter.setFilter(feedsProject);
         // mSearchView.setSubmitButtonEnabled(true);
         mSearchView.setQueryHint("Search here....");
     }
@@ -221,7 +220,7 @@ public class TaskFragment extends Fragment implements SearchView.OnQueryTextList
     }
 
     public boolean onQueryTextChange(String newText) {
-        final List<TaskItem> filteredModelList = filter(feedsTask, newText);
+        final List<ProjectItem> filteredModelList = filter(feedsProject, newText);
         adapter.setFilter(filteredModelList);
         return true;
     }
@@ -229,9 +228,9 @@ public class TaskFragment extends Fragment implements SearchView.OnQueryTextList
     public boolean onQueryTextSubmit(String query) {
         return false;
     }
-    private List<TaskItem> filter(List<TaskItem> models, String query) {
-        query = query.toLowerCase();final List<TaskItem> filteredModelList = new ArrayList<>();
-        for (TaskItem model : models) {
+    private List<ProjectItem> filter(List<ProjectItem> models, String query) {
+        query = query.toLowerCase();final List<ProjectItem> filteredModelList = new ArrayList<>();
+        for (ProjectItem model : models) {
             final String name = model.getName().toLowerCase();
             if (name.contains(query)) {
                 filteredModelList.add(model);
@@ -239,7 +238,6 @@ public class TaskFragment extends Fragment implements SearchView.OnQueryTextList
         }
         return filteredModelList;
     }
-
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
