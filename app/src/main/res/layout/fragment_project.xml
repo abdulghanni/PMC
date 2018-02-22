@@ -5,7 +5,7 @@
     android:id="@+id/activity_main"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/background"
+    android:background="#6563a4"
     android:clipChildren="false"
     android:clipToPadding="false"
     android:divider="@android:color/transparent"

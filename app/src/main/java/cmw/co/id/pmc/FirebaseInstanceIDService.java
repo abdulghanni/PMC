@@ -1,45 +1,35 @@
-package cmw.co.id.pmc;
+package cmw.co.id.pmc;;
 
+import android.content.Intent;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.FirebaseInstanceIdReceiver;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 
-import java.io.IOException;
-
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
 
 /**
- * Created by CMW on 15/02/2018.
+ * Created by Belal on 03/11/16.
  */
+
 
 public class FirebaseInstanceIDService extends FirebaseInstanceIdService {
 
+    private static final String TAG = "FCMFirebaseIIDService";
+
     @Override
-    public void onTokenRefresh(){
-        String token = FirebaseInstanceId.getInstance().getToken();
-        registerToken(token);
+    public void onTokenRefresh() {
+        String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+        Log.d(TAG, "Refreshed token: " + refreshedToken);
+        storeToken(refreshedToken);
     }
 
-    private void registerToken(String token) {
-        OkHttpClient client = new OkHttpClient();
-        RequestBody body = new FormBody.Builder()
-                .add("Token", token)
-                .build();
+    private void storeToken(String token) {
+        //saving the token on shared preferences
+        SharedPrefManager.getInstance(getApplicationContext()).saveDeviceToken(token);
 
-        Request request = new Request.Builder()
-                .url(Server.URL + "login/register_token")
-                .build();
-
-        try {
-            client.newCall(request).execute();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        // Notify UI that registration has completed, so the progress indicator can be hidden.
+        Intent registrationComplete = new Intent(MainActivity.PUSH_NOTIFICATION);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(registrationComplete);
     }
-
 }
